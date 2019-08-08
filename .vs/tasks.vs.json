@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "task-0_backtest_simple_strategy",
+      "appliesTo": "notebooks/0_backtest_simple_strategy.ipynb",
+      "type": "launch"
+    }
+  ]
+}
