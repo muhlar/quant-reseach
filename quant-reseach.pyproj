@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2a973ec3-b3d4-413a-9e87-2a65d5a04a2e}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>notebooks_converted\2_moving_windows.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>CondaEnv|CondaEnv|quant_research</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="documentation\simple_strategy_backtest_example.png" />
+    <Content Include="documentation\simple_strategy_backtest_example_incorrect.png" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="examples\0_load_augmento_example_data.py" />
+    <Compile Include="examples\1_load_augmento_example_info.py" />
+    <Compile Include="examples\2_load_bitmex_example_data.py" />
+    <Compile Include="examples\3_plot_augmento_example_data.py" />
+    <Compile Include="examples\4_basic_strategy_example.py" />
+    <Compile Include="examples\5_write_strategy_to_csv.py" />
+    <Compile Include="helpers\analysis_helper.py" />
+    <Compile Include="helpers\data_loader_helper.py" />
+    <Compile Include="helpers\data_model.py" />
+    <Compile Include="helpers\datetime_helper.py" />
+    <Compile Include="helpers\example_helper.py" />
+    <Compile Include="helpers\helper_functions.py" />
+    <Compile Include="helpers\io_helper.py" />
+    <Compile Include="helpers\load_augmento_data_helper.py" />
+    <Compile Include="helpers\__init__.py" />
+    <Compile Include="notebooks_converted\0_backtest_simple_strategy-checkpoint.py" />
+    <Compile Include="notebooks_converted\0_backtest_simple_strategy.py" />
+    <Compile Include="notebooks_converted\1_backtesting_different_sentiment_pairs.py" />
+    <Compile Include="notebooks_converted\2_backtesting_different_sentiment_pairs_b.py" />
+    <Compile Include="notebooks_converted\2_moving_windows.py" />
+    <Compile Include="notebooks_converted\moving_windows_testing.py" />
+    <Compile Include="notebooks_converted\__init__.py" />
+    <Compile Include="test\test_test.py" />
+    <Compile Include="test\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="documentation" />
+    <Folder Include="examples" />
+    <Folder Include="helpers" />
+    <Folder Include="notebooks_converted" />
+    <Folder Include="test" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|quant_research" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

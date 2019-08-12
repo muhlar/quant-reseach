@@ -5,7 +5,7 @@ import zlib
 import msgpack
 import numpy as np
 
-import datetime_helper as dh
+import helpers.datetime_helper as dh
 
 # define the base url of the endpoint
 base_url = "http://api-dev.augmento.ai/v0.1"

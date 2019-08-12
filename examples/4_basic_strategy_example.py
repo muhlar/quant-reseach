@@ -7,9 +7,8 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as md
 
 # import files from src
-sys.path.insert(0, "src")
-import example_helper as eh
-import analysis_helper as ah
+import helpers.example_helper as eh
+import helpers.analysis_helper as ah
 
 # define the location of the input file
 filename_augmento_topics = "data/example_data/augmento_topics.msgpack.zlib"

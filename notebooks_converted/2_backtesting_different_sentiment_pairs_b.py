@@ -19,11 +19,8 @@ except:
 # <br>
 # In conclusion, due to a very high amount of combinations of windows sizes and sentiment tags, finding the "best" pair is hard. Every pair will have its highest NLP concentrated in different areas. Changing a size of one of the windows might change results drastically.
 
-#%%
-import sys
-sys.path.insert(0, "../src")
-import example_helper as eh
-import analysis_helper as ah
+import helpers.example_helper as eh
+import helpers.analysis_helper as ah
 import msgpack
 import zlib
 import numpy as np

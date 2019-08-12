@@ -5,10 +5,8 @@ import time
 import zlib
 import msgpack
 
-# import files from src
-sys.path.insert(0, "src")
-import helper_functions as hf
-import io_helper as ioh
+import helpers.helper_functions as hf
+import helpers.io_helper as ioh
 
 # define the url of the endpoint to get event data
 endpoint_url = "http://api-dev.augmento.ai/v0.1/events/aggregated"

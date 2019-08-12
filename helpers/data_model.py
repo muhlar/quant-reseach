@@ -1,4 +1,4 @@
-import example_helper as eh
+import helpers.example_helper as eh
 import numpy as np
 import math 
 

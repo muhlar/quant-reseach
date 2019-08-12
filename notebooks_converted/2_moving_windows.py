@@ -7,11 +7,8 @@ try:
 except:
 	pass
 
-#%%
-import sys
-sys.path.insert(0, "../src")
-import example_helper as eh
-import analysis_helper as ah
+import helpers.example_helper as eh
+import helpers.analysis_helper as ah
 import msgpack
 import zlib
 import numpy as np
@@ -41,19 +38,20 @@ all_topics = aug_data.T.astype(float)
 
 #%% [markdown]
 # # Example for Topics "Bullish" and "Bearish"
+# Selects count data for particular topics
 
 #%%
-aug_signal_a = aug_data[:, aug_topics_inv["Bullish"]].astype(np.float64)
-aug_signal_b = aug_data[:, aug_topics_inv["Bearish"]].astype(np.float64)
+aug_signal_bullish = aug_data[:, aug_topics_inv["Bullish"]].astype(np.float64)
+aug_signal_bearish = aug_data[:, aug_topics_inv["Bearish"]].astype(np.float64)
 
 
 #%%
 # define the window size for the sentiment score calculation
 n_days = 7
-window_size = 24 * n_days
+window_size = 24 * n_days # in hours
 
 # generate the sentiment score
-sent_score = ah.nb_calc_sentiment_score_a(aug_signal_a, aug_signal_b, window_size, window_size)
+sent_score = ah.nb_calc_sentiment_score_a(aug_signal_bullish, aug_signal_bearish, window_size, window_size)
 
 # define some parameters for the backtest
 start_pnl = 1.0
@@ -66,12 +64,12 @@ pnl = ah.nb_backtest_a(price_data, sent_score, start_pnl, buy_sell_fee)
 # # Compare various windows sizes
 
 #%%
-sent_score = ah.nb_calc_sentiment_score_a(aug_signal_a,aug_signal_b,1,2)
+sent_score = ah.nb_calc_sentiment_score_a(aug_signal_bullish,aug_signal_bearish,1,2)
 pnl = ah.nb_backtest_a(price_data, sent_score, 1.0, 0.0075)
 
 
 #%%
-sent_score = ah.nb_calc_sentiment_score_a(aug_signal_a,aug_signal_b,7*24,7*24)
+sent_score = ah.nb_calc_sentiment_score_a(aug_signal_bullish,aug_signal_bearish,7*24,7*24)
 pnl = ah.nb_backtest_a(price_data, sent_score, 1.0, 0.0075)
 
 
@@ -88,8 +86,8 @@ win_all_b = np.zeros(shape=(s_days,l_days))
 
 for i in range(0, s_days):
     for j in range(0, l_days):
-        sent_score_a = ah.nb_calc_sentiment_score_a(aug_signal_a,aug_signal_b,(i+1)*24,(j+1)*24)
-        sent_score_b = ah.nb_calc_sentiment_score_b(aug_signal_a, aug_signal_b, (i+1)*24,(j+1)*24)
+        sent_score_a = ah.nb_calc_sentiment_score_a(aug_signal_bullish,aug_signal_bearish,(i+1)*24,(j+1)*24)
+        sent_score_b = ah.nb_calc_sentiment_score_b(aug_signal_bullish, aug_signal_bearish, (i+1)*24,(j+1)*24)
         #pnl_a = ah.nb_backtest_a(price_data, sent_score_a, 1.0, 0.0075)
         #pnl_b = ah.nb_backtest_a(price_data, sent_score_b, 1.0, 0.0075)
         win_all_a[i,j] = ah.nb_backtest_a(price_data, sent_score_a, 1.0, 0.0075)[-1]
@@ -124,7 +122,7 @@ win_all_a = np.zeros(shape=(s_days,l_days))
 
 for i in range(0, s_days):
     for j in range(0, l_days):
-        sent_score_a = ah.nb_calc_sentiment_score_a(aug_signal_a,aug_signal_b,(i+1)*24,(j+1)*24)
+        sent_score_a = ah.nb_calc_sentiment_score_a(aug_signal_bullish,aug_signal_bearish,(i+1)*24,(j+1)*24)
         #pnl_a = ah.nb_backtest_a(price_data, sent_score_a, 1.0, 0.0075)
         #pnl_b = ah.nb_backtest_a(price_data, sent_score_b, 1.0, 0.0075)
         win_all_a[i,j] = ah.nb_backtest_a(price_data, sent_score_a, 1.0, 0.0075)[-1]
@@ -142,7 +140,7 @@ win_all_a = np.zeros(shape=(s_days,l_days))
 for std in range(0,5):
     for i in range(0, s_days):
         for j in range(0, l_days):
-            sent_score_a = ah.nb_calc_sentiment_score_a(aug_signal_a,aug_signal_b,(i+1)*24+np.random.normal(0,std),(j+1)*24+np.random.normal(0,std))
+            sent_score_a = ah.nb_calc_sentiment_score_a(aug_signal_bullish,aug_signal_bearish,(i+1)*24+np.random.normal(0,std),(j+1)*24+np.random.normal(0,std))
             win_all_a[i,j] = ah.nb_backtest_a(price_data, sent_score_a, 1.0, 0.0075)[-1]
     cmap = sns.cubehelix_palette(50, hue=0.05, rot=0, light=0.0, dark=1.2, as_cmap=True)
     figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
@@ -162,7 +160,7 @@ win_all_a = np.zeros(shape=(s_days,l_days))
 for std in range(0,5):
     for i in range(0, s_days):
         for j in range(0, l_days):
-            sent_score_a = ah.nb_calc_sentiment_score_a(aug_signal_a,aug_signal_b,(i+1)*24+np.random.uniform(0,std),(j+1)*24+np.random.uniform(0,std))
+            sent_score_a = ah.nb_calc_sentiment_score_a(aug_signal_bullish,aug_signal_bearish,(i+1)*24+np.random.uniform(0,std),(j+1)*24+np.random.uniform(0,std))
             win_all_a[i,j] = ah.nb_backtest_a(price_data, sent_score_a, 1.0, 0.0075)[-1]
     cmap = sns.cubehelix_palette(50, hue=0.05, rot=0, light=0.0, dark=1.2, as_cmap=True)
     figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
@@ -189,7 +187,7 @@ win_all_b = np.zeros(shape=(s_days,l_days))
 
 for i in range(0, s_days):
     for j in range(0, l_days):
-        sent_score_a = ah.nb_calc_sentiment_score_a(aug_signal_a,aug_signal_b,(i+1)*24+np.random.normal(0,1),(j+1)*24+np.random.normal(0,1))
+        sent_score_a = ah.nb_calc_sentiment_score_a(aug_signal_bullish,aug_signal_bearish,(i+1)*24+np.random.normal(0,1),(j+1)*24+np.random.normal(0,1))
         win_all_b[i,j] = ah.nb_backtest_a(price_data, sent_score_a, 1.0, 0.0075)[-1]
 
 

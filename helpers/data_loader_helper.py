@@ -4,11 +4,11 @@ import msgpack
 import zlib
 import numpy as np
 
-import io_helper as ioh
-import datetime_helper as dh
-import load_augmento_data_helper as ladh
+import helpers.io_helper as ioh
+import helpers.datetime_helper as dh
+import helpers.load_augmento_data_helper as ladh
 #import load_binance_data_helper as lbdh
-import load_kraken_data_helper as lbdh
+import helpers.load_kraken_data_helper as lbdh
 
 
 def find_missing_date_batches(missing_days, required_days):

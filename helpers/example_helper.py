@@ -1,8 +1,8 @@
 import msgpack
 import zlib
 import numpy as np
-import helper_functions as hf
-import datetime_helper as dh
+import helpers.helper_functions as hf
+import helpers.datetime_helper as dh
 
 def strip_data_by_time(t_data, data, t_min, t_max):
 	data = np.array([s for s, t in zip(data, t_data) if t >= t_min and t <= t_max])
